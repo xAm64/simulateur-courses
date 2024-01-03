@@ -1,8 +1,10 @@
 import java.awt.DisplayMode;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+
 public class Course {
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
@@ -14,10 +16,13 @@ public class Course {
 			System.out.println("Sur combien de chevaux parier (entre 3 et 5)");
 			String numberHorsesParieString = scn.nextLine();
 			if (ctrlWrite(numberHorsesString) && ctrlPari(numberHorsesParieString)) {
-				System.out.println("Je suis dans le if");
+				Set <Integer>horse=horseRace(Integer.parseInt(numberHorsesParieString));
+				showResult(horse);
 			} else {
 				System.out.println("Erreur détecté, veuillez recommencer");
 			}
+			System.out.println("Une autre tentative ?");
+			replay = scn.nextLine();
 		} while (replay.equals("oui"));
 		System.out.println("Au revoir");
 	}
@@ -31,6 +36,15 @@ public class Course {
 		}
 		return horse;
 	}
+	
+	public static void showResult(Set<Integer>horse) {
+			Iterator<Integer>iterator = horse.iterator();
+			while (iterator.hasNext()){
+				int horseWin = iterator.next();
+				System.out.println("les chevaux " + horseWin + "" + "ont gagné la course");
+			}
+
+		}
 	
 	private static boolean ctrlWrite(String x) {
 		Scanner scanner = new Scanner(x);
