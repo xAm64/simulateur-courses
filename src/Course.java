@@ -11,7 +11,9 @@ public class Course {
 		do {
 			System.out.println("Combien de chevaux participent ? (entre 12 et 20)");
 			String numberHorsesString = scn.nextLine();
-			if (ctrlWrite(numberHorsesString)) {
+			System.out.println("Sur combien de chevaux parier (entre 3 et 5)");
+			String numberHorsesParieString = scn.nextLine();
+			if (ctrlWrite(numberHorsesString) && ctrlPari(numberHorsesParieString)) {
 				System.out.println("Je suis dans le if");
 			} else {
 				System.out.println("Erreur détecté, veuillez recommencer");
@@ -36,6 +38,17 @@ public class Course {
 		if (scanner.hasNextInt()) {
 			int number = Integer.parseInt(x);
 			if (number >= 12 && number <= 20) {
+				out = true;
+			}
+		}
+		return out;
+	}
+	private static boolean ctrlPari(String x) {
+		Scanner scanner = new Scanner(x);
+		boolean out = false;
+		if (scanner.hasNextInt()) {
+			int number = Integer.parseInt(x);
+			if (number >= 3 && number <= 5) {
 				out = true;
 			}
 		}
